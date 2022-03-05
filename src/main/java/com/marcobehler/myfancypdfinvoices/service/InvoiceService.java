@@ -2,17 +2,39 @@ package com.marcobehler.myfancypdfinvoices.service;
 
 import com.marcobehler.myfancypdfinvoices.model.Invoice;
 import com.marcobehler.myfancypdfinvoices.model.User;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+@Component
 public class InvoiceService {
     private final UserService userService;
+    private final String cdnUrl;
+
     private List<Invoice> invoices = new CopyOnWriteArrayList<>();
 
-    public InvoiceService(UserService userService) {
+    public InvoiceService(UserService userService, @Value("${cdn.url}") String cdnUrl) {
         this.userService = userService;
+        this.cdnUrl = cdnUrl;
     }
+
+    @PostConstruct
+    public void init() {
+        System.out.println("Fetching PDF Template from S3...");
+        // TODO download from s3 and save locally
+    }
+
+    @PreDestroy
+    public void shutdown() {
+        System.out.println("Deleting downloaded templates...");
+        // TODO actual deletion of PDFs
+    }
+
+
 
     public List<Invoice> findAll(){
         return this.invoices;
@@ -25,8 +47,9 @@ public class InvoiceService {
             throw new IllegalStateException();
         }
 
-        Invoice invoice = new Invoice(userId,amount,"http://www.africau.edu/images/default/sample.pdf");
-        this.invoices.add(invoice);
+        // TODO real pdf creation and storing it on network server
+        Invoice invoice = new Invoice(userId, amount, cdnUrl + "/images/default/sample.pdf");
+        invoices.add(invoice);
         return invoice;
     }
 }
