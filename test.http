@@ -5,3 +5,7 @@ Accept: application/json
 
 POST http://localhost:8080/invoices?user_id=TiffanyAng&amount=88
 Accept: application/json
+
+###
+POST http://localhost:8080/invoices?user_id=franz&amount=60
+Accept: application/json
