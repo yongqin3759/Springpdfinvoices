@@ -22,19 +22,6 @@ public class InvoiceService {
         this.cdnUrl = cdnUrl;
     }
 
-    @PostConstruct
-    public void init() {
-        System.out.println("Fetching PDF Template from S3...");
-        // TODO download from s3 and save locally
-    }
-
-    @PreDestroy
-    public void shutdown() {
-        System.out.println("Deleting downloaded templates...");
-        // TODO actual deletion of PDFs
-    }
-
-
 
     public List<Invoice> findAll(){
         return this.invoices;

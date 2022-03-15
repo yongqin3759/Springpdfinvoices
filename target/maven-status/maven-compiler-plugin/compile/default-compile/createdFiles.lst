@@ -1,2 +1,2 @@
-com\marcobehler\myfancypdfinvoices\web\MyFancyPdfInvoicesController.class
-com\marcobehler\myfancypdfinvoices\service\DummyInvoiceServiceLoader.class
+com/marcobehler/myfancypdfinvoices/web/MyFancyPdfInvoicesController.class
+com/marcobehler/myfancypdfinvoices/dto/InvoiceDto.class
