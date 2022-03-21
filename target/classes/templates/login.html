@@ -9,7 +9,7 @@
     Sorry, <span th:text="${loginForm.username}">[username]</span>, that doesn't look like you!
 </div>
 <form th:action="@{/login}" th:object="${loginForm}" method="post">
-    
+
     <p>Username: <input type="text" th:field="*{username}"/></p>
     <p style="background-color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
 
